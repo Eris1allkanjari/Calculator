@@ -40,7 +40,7 @@
             });
             document.querySelector('input[value="C"]').onclick = function() { calculator.reset(); };
             document.querySelector('input.equal').onclick = function() {
-                if(calculator.answer.value) { /* If Equals with empty field */
+                if(calculator.answer.value && calculator.answer.value !== 'Error') { /* If Equals without empty and without 'Error' field */
                     try {
                         calculator.answer.value = eval(calculator.answer.value) != Infinity ? eval(calculator.answer.value) : 'Error';
                     }
