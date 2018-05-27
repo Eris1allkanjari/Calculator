@@ -1,61 +1,86 @@
-
-
-#calculator-container{
-    position: relative;
+@font-face {
+    font-family: 'LCD';
+    src: url(lcd.ttf);
+}
+html, body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center; /* V Centering. */
+    justify-content: center; /* H Centering. */
+}
+.calculator-container {
     width: 300px;
-    border: 2px solid black;
-    border-radius: 12px;
-    margin: 0 auto;
-    
+    transform: scale(1.5);
+    border: 2px solid #455a64;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2);
+    border-radius: 8px;
     background-color: #666
 }
-
-  .header-container{
-    
-    background-color:rgb(54, 50, 47);
-    padding-top: 5px;
-    border-radius: 12px;
-    
-    
-  }
-
-
-
-    input[type=button] {
-        background: rgb(26, 25, 25);
-        width: 20%;
-        font-size: 20px;
-        font-weight: 900;
-        border-radius: 7px;
-        margin-left: 15px;
-        margin-top: 10px;
-        color: white;
-      }
-      input[type=button]:active {
-        background-color: #c8ccc8;
-        box-shadow: 0 5px #666;
-        transform: translateY(4px);
-      }
-      input[type=button]:hover {
-        background-color: #586d58;
-        color: white;
-      }
-      
-      input[type = text] {
-        position: relative;
-        display: block;
-        width: 90%;
-        margin: 5px auto;
-         font-size: 20px;
-        padding: 10px;
-        box-shadow: 4px 0px 12px black inset;
-        background-color: #567756;
-      }
-
-        input[class=action]{
-          background: rgb(187, 63, 63);
-        }
-
-        input[class=equal]{
-          background: #57a157;
-        }
+.header-container{
+    background-color:#36322f;
+    display: flex;
+    padding: .5em;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, .5);
+    border-bottom-width: 0;
+}
+.button-container {
+    display: flex;
+    flex-flow: wrap;
+}
+.button-container input {
+    flex: 25%;
+    border: 1px solid rgba(255, 255, 255, .5);
+    padding: .5em 1em;
+}
+.button-container input[value="0"] {
+    flex: 50%;
+    border-bottom-left-radius: 5px;
+}
+.button-container input.equal {
+    border-bottom-right-radius: 5px;
+}
+.button-container input:first-child {
+  border-top-left-radius: 5px;
+}
+.button-container input:nth-child(4) {
+  border-top-right-radius: 5px;
+}
+input[type="button"] {
+    background: #1a1919;
+    font-size: 20px;
+    font-weight: 900;
+    color: white;
+    transition: .15s ease;
+}
+input[type="button"]:active {
+    background-color: #c8ccc8;
+    box-shadow: 0 5px #666;
+    transform: translateY(2px);
+}
+input[type="button"]:hover {
+    background-color: #586d58;
+}
+input[name="answer"] {
+    font-family: 'LCD';
+    width: 100%;
+    font-size: 32pt;
+    padding: 5px 10px;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, .25);
+    text-align: right;
+    box-shadow: 4px 0 12px black inset;
+    background-color: #567756;
+}
+input[class="action"]{
+    background: #455a64;
+}
+input[class="equal"]{
+    background: #43a047;
+}
+input, button {
+  border: none;
+  outline: none;
+}

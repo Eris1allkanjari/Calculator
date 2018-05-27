@@ -1,39 +1,55 @@
-
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Web Calculator</title>
-        <link href="cal.css" rel="stylesheet"
-        type="text/css";/>
-        
-
-    </head>
-        <body>
-            <div id="calculator-container">
-                <form name="calculator">
-                    <div class="header-container">
-                <input  type="text" name="answer"/><br/>
-                </div>
-                       
-                
-                <input type="button" value=" 7 " onclick="calculator.answer.value+='7'"/>
-                <input type="button" value=" 8" onclick="calculator.answer.value+='8'" />
-                <input type="button" value="9" onclick="calculator.answer.value+='9'" />
-                <input type="button" value="4" onclick="calculator.answer.value+='4'" />
-                <input type="button" value="5" onclick="calculator.answer.value+='5'" />
-                <input type="button" value="6" onclick="calculator.answer.value+='6'" />
-                <input type="button" value="1" onclick="calculator.answer.value+='1'" />
-                <input type="button" value="2" onclick="calculator.answer.value+='2'" />
-                <input type="button" value="3" onclick="calculator.answer.value+='3'" />
-                <input type="button" value="0" onclick="calculator.answer.value+='0'" />
-                <input type="button" value="c" onclick="calculator.answer.value =''" />        
-                <input class="action" type="button" value="+" onclick="calculator.answer.value+='+'" />
-                <input class="action" type="button" value="-" onclick="calculator.answer.value+='-'" />
-                <input class="action" type="button" value="*" onclick="calculator.answer.value+='*'" />
-                <input class="action" type="button" value="/" onclick="calculator.answer.value+='/'" />
-                <input class="equal" type="button" value=" = " onclick="calculator.answer.value = eval(calculator.answer.value)" />
-                </form>
+<head>
+    <title>Web Calculator</title>
+    <link rel="stylesheet" href="cal.css" />
+</head>
+<body>
+    <div class="calculator-container">
+        <form name="calculator">
+            <div class="header-container">
+                <input type="text" readonly name="answer" value="0" />
             </div>
-        
-        </body>
-
+            <div class="button-container">
+                <input class="action" type="button" value="C" />
+                <input class="action" type="button" value="^" />
+                <input class="action" type="button" value="%" />
+                <input class="action" type="button" value=" / " />
+                <input type="button" value="7" />
+                <input type="button" value="8" />
+                <input type="button" value="9" />
+                <input class="action" type="button" value=" * " />
+                <input type="button" value="4" />
+                <input type="button" value="5" />
+                <input type="button" value="6" />
+                <input class="action" type="button" value=" - " />
+                <input type="button" value="1" />
+                <input type="button" value="2" />
+                <input type="button" value="3" />
+                <input class="action" type="button" value=" + " />
+                <input type="button" value="0" />
+                <input type="button" value="." />
+                <input class="equal" type="button" value="=" />
+            </div>
+        </form>
+    </div>
+    <script>
+        window.onload = function() {
+            document.querySelectorAll('input[type="button"]:not(.equal):not([value="C"])').forEach(element => {
+                element.onclick = function() { calculator.answer.value = /0|Error/.test(calculator.answer.value) ? element.value : calculator.answer.value + element.value; };
+            });
+            document.querySelector('input[value="C"]').onclick = function() { calculator.reset(); };
+            document.querySelector('input.equal').onclick = function() {
+                if(calculator.answer.value && calculator.answer.value !== 'Error') { /* If Equals without empty and without 'Error' field */
+                    try {
+                        calculator.answer.value = eval(calculator.answer.value) != Infinity ? eval(calculator.answer.value) : 'Error';
+                    }
+                    catch {
+                        calculator.answer.value = 'Error';
+                    }
+                }
+            }
+        }
+    </script>
+</body>
 </html>
